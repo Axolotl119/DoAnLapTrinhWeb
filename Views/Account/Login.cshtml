@@ -1,0 +1,76 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    
+*@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Đăng Nhap";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Đăng Nhập</h2>
+            <p>Chào mừng bạn trở lại! Vui lòng đăng nhập để tiếp tục.</p>
+        </div>
+        <form id="login-form">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Tên tài khoản" required />
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Mật khẩu" required />
+            </div>
+            <button type="submit" class="btn-login">Đăng Nhập</button>
+            <div class="social-login">
+                <label>
+                    <input type="checkbox" id="remember-me" />
+                    Ghi nhớ tài khoản
+                </label>
+                <button type="button" class="btn-google">Đăng nhập với Google</button>
+            </div>
+        </form>
+        <p class="bottom-text">
+            Bạn chưa có tài khoản? <a href="register.html">Đăng ký</a>
+        </p>
+    </div>
+
+    <script>
+       document.getElementById('login-form').addEventListener('submit', async function(event) {
+           event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+
+           // Lấy dữ liệu từ form
+           const username = document.querySelector('input[name="username"]').value;
+           const password = document.querySelector('input[name="password"]').value;
+
+           try {
+               // Gửi yêu cầu POST đến server
+               const response = await fetch('/Account/Login', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify({ username, password })
+               });
+
+               if (response.ok) {
+                   // Nếu đăng nhập thành công, chuyển hướng đến trang chủ
+                   window.location.href = '/Home/Index';
+               } else {
+                   // Hiển thị thông báo lỗi nếu đăng nhập thất bại
+                   alert('Tên tài khoản hoặc mật khẩu không đúng!');
+               }
+           } catch (error) {
+               console.error('Đã xảy ra lỗi:', error);
+               alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
+           }
+       });
+    </script>
+</body>
+</html>

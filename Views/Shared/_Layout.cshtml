@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Efood_Menu</title>
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Efood_Menu.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="layout-wrapper">
+        @if (!(ViewContext.RouteData.Values["Action"]?.ToString() == "Login" &&
+                ViewContext.RouteData.Values["Controller"]?.ToString() == "Account"))
+        {
+            <nav class="sidebar">
+                <div class="logo">
+                    <h2>Jaegar Resto</h2>
+                    <p>Thứ 2, 1 Th11 2020</p>
+                </div>
+                <ul class="menu">
+                    <li><a href="#" class="active"><i class="icon-home"></i> Trang Chủ</a></li>
+                    <li><a href="#"><i class="icon-menu"></i> Thực Đơn</a></li>
+                    <li><a href="#"><i class="icon-booking"></i> Đặt Bàn</a></li>
+                    <li><a href="#"><i class="icon-contact"></i> Liên Hệ</a></li>
+                </ul>
+            </nav>
+        }
+        <div class="main-content">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+            <footer class="border-top footer text-muted">
+                <div class="container">
+                    &copy; 2025 - Efood_Menu - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/edit-food.js" asp-append-version="true"></script>
+    <script src="~/js/script.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

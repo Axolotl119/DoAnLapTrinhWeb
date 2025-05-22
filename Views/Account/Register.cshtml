@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+       Layout = "_Layout";
+    ViewData["Title"] = "Đăng Ký";
+}
+<div class="register-container">
+    <h2>Đăng Ký</h2>
+    <form action="/register" method="POST">
+        <input type="text" name="fullname" placeholder="Họ và tên" required />
+        <input type="text" name="username" placeholder="Tên tài khoản" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Mật khẩu" required />
+        <input type="password" name="confirm-password" placeholder="Nhập lại mật khẩu" required />
+        <button type="submit" class="btn-register">Đăng Ký</button>
+    </form>
+    <p class="bottom-text">
+        Bạn đã có tài khoản? <a href="index.html">Đăng nhập</a>
+    </p>
+</div>
