@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\lap_trinh_web\\ASP.net\\DoAnLapTrinh\\Efood-Menu.csproj",
+      "projectUniqueName": "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\Efood-Menu.csproj",
       "projectName": "Efood-Menu",
-      "projectPath": "D:\\lap_trinh_web\\ASP.net\\DoAnLapTrinh\\Efood-Menu.csproj",
+      "projectPath": "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\Efood-Menu.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "D:\\lap_trinh_web\\ASP.net\\DoAnLapTrinh\\obj\\",
+      "outputPath": "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
