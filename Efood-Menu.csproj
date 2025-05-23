@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\images\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
