@@ -1,0 +1,14 @@
+
+.sidebar-logo {
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: $sidebar-logo-bg;
+  border-radius: 12px;
+  margin-top: 1rem;
+
+  img {
+    width: 36px;
+    height: 36px;
+  }
+}
