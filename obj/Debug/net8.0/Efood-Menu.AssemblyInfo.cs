@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Efood-Menu")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c185f968fc52009cd707afd07ea1b2539c60b14")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68ce858da16fc9d6f5a4c733fba4e1a3a2f865b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Efood-Menu")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Efood-Menu")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

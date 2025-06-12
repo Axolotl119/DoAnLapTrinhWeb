@@ -56,3 +56,7 @@ E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\refint\Efood-Menu
 E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\Efood-Menu.pdb
 E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\Efood-Menu.genruntimeconfig.cache
 E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\ref\Efood-Menu.dll
+E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\rpswa.dswa.cache.json
+E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\rjimswa.dswa.cache.json
+E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json

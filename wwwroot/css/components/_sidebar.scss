@@ -22,15 +22,7 @@
     margin-bottom: 48px;
   }
 
-  .sidebar-menu {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-    width: 100%;
-    list-style-type: none;
-  }
+
 }
 
 // Responsive
@@ -45,14 +37,18 @@
       height: 48px;
       border-radius: 12px;
     }
+
     .sidebar-menu {
       gap: 24px;
     }
+
     .side-menu-item {
       width: 40px !important;
       height: 40px !important;
       border-radius: 12px !important;
-      .icon-box, .icon-box-active {
+
+      .icon-box,
+      .icon-box-active {
         width: 24px !important;
         height: 24px !important;
         border-radius: 8px !important;

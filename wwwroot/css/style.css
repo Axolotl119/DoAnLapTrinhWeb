@@ -11,6 +11,24 @@
   height: 36px;
 }
 
+.sidebar-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  list-style-type: none;
+}
+.sidebar-menu .side-menu-item {
+  border-radius: 12px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  padding: 0.25rem;
+}
+
 .sidebar-modern {
   width: 80px;
   min-height: 100vh;
@@ -29,15 +47,6 @@
 }
 .sidebar-modern .sidebar-logo {
   margin-bottom: 48px;
-}
-.sidebar-modern .sidebar-menu {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 48px;
-  width: 100%;
-  list-style-type: none;
 }
 
 @media (max-width: 600px) {
@@ -59,7 +68,8 @@
     height: 40px !important;
     border-radius: 12px !important;
   }
-  .sidebar-modern .side-menu-item .icon-box, .sidebar-modern .side-menu-item .icon-box-active {
+  .sidebar-modern .side-menu-item .icon-box,
+  .sidebar-modern .side-menu-item .icon-box-active {
     width: 24px !important;
     height: 24px !important;
     border-radius: 8px !important;
@@ -70,7 +80,6 @@ body {
   font-family: "Arial", sans-serif;
   background-color: #393C49;
   color: #fff;
-  display: flex;
   height: 100vh;
 }
 body::-webkit-scrollbar {
@@ -87,6 +96,10 @@ body::-webkit-scrollbar-track {
 .layout-wrapper {
   display: flex;
   min-height: 100vh;
+  background-color: #393C49;
+  color: #fff;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .main-content {
