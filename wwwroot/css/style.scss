@@ -1,5 +1,8 @@
-@import 'components/variables';
+﻿@import 'components/variables';
+@import 'components/sidebar-logo';
+@import 'components/sidebar-menu';
 @import 'components/sidebar';
+@import 'components/_login';
 
 // Variables
 $primary-bg: #393C49;
@@ -56,14 +59,14 @@ body {
   background-color: $primary-bg;
   color: $text-main;
   justify-content: center;
-  align-items: stretch;
 }
 
 // Main Content
 .main-content {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+    margin-left: 88px; /* hoặc đúng bằng width của .sidebar-modern */
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 header {
@@ -270,5 +273,10 @@ header {
       height: 120px;
     }
   }
+}
+@media (max-width: 600px) {
+    .main-content {
+        margin-left: 64px;
+    }
 }
 

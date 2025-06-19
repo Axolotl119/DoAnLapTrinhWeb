@@ -3,10 +3,10 @@
 @import 'sidebar-menu';
 
 .sidebar-modern {
-  width: 80px;
+  width: 88px;
   min-height: 100vh;
   background: $sidebar-bg;
-  border-radius: 0 10px 20px 0;
+  border-radius: 0 24px 24px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,12 +16,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: 0;
-
-  .sidebar-logo {
-    margin-bottom: 48px;
-  }
-
+  z-index: 10;
 
 }
 
@@ -32,27 +27,7 @@
     border-radius: 0 24px 24px 0;
     padding: 16px 0 0 0;
 
-    .sidebar-logo .icon-box-bg {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-    }
 
-    .sidebar-menu {
-      gap: 24px;
-    }
-
-    .side-menu-item {
-      width: 40px !important;
-      height: 40px !important;
-      border-radius: 12px !important;
-
-      .icon-box,
-      .icon-box-active {
-        width: 24px !important;
-        height: 24px !important;
-        border-radius: 8px !important;
-      }
-    }
+    
   }
 }

@@ -1,0 +1,25 @@
+﻿@model Efood_Menu.Models.Menu
+
+@{
+    ViewData["Title"] = "Create Menu";
+}
+
+<h1>Create Menu</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="selectedFoodItems">Select Food Items</label>
+        <select id="selectedFoodItems" name="selectedFoodItems" class="form-control" multiple="multiple">
+            @foreach (var item in (MultiSelectList)ViewBag.FoodItems)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

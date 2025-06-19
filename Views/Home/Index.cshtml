@@ -1,28 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Trang Chủ";
     Layout = "_Layout";
-
 }
-<div class="main">
-    <header>
-        <nav class="category-nav">
-            <a href="#" class="active">Thức ăn nóng</a>
-            <a href="#">Thức ăn lạnh</a>
-            <a href="#">Soup</a>
-            <a href="#">Đồ nướng</a>
-            <a href="#">Món khai vị</a>
-            <a href="#">Tráng miệng</a>
-        </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm thức ăn trong thực đơn">
-            <select>
-                <option value="dine-in">Dine In</option>
-                <option value="take-away">Take Away</option>
-            </select>
+
+<div class="main home-page" style="text-align:center; padding: 60px 0;">
+    <header class="hero">
+
+        <h1>Chào mừng đến với eFood Menu!</h1>
+        <p>Khám phá thực đơn đa dạng và đặt món ăn một cách dễ dàng, nhanh chóng.</p>
+        <div style="margin-top: 40px;">
+            <a href="/Menus/Index" class="btn btn-primary" style="margin-right: 20px; min-width: 140px;">Xem Menu</a>
+            <a href="/Account/Login" class="btn btn-secondary" style="min-width: 140px;">Đăng nhập</a>
         </div>
     </header>
-
-    <p>Hien tai chua co mon</p>
-    <!-- Thêm các món ăn khác tương tự -->
-</div>
 </div>
