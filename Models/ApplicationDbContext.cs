@@ -11,6 +11,5 @@ namespace Efood_Menu.Models
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
-        public DbSet<Menu> Menus { get; set; }
     }
 }

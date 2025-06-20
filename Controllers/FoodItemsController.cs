@@ -7,18 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Efood_Menu.Models;
 using Efood_Menu.Repositories;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Efood_Menu.Controllers
 {
     public class FoodItemsController : Controller
     {
         private readonly IFoodItemRepository _repository;
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public FoodItemsController(IFoodItemRepository repository, ApplicationDbContext context)
+        public FoodItemsController(IFoodItemRepository repository, ICategoryRepository categoryRepository)
         {
             _repository = repository;
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         // GET: FoodItems
@@ -46,9 +48,10 @@ namespace Efood_Menu.Controllers
         }
 
         // GET: FoodItems/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            var categories = await _categoryRepository.GetAllAsync();
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "Name");
             return View();
         }
 
@@ -57,15 +60,82 @@ namespace Efood_Menu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,CategoryId")] FoodItem foodItem)
+        public async Task<IActionResult> Create(
+            [Bind("Id,Name,Description,Price,CategoryId,ImageUrl")] FoodItem foodItem,
+            IFormFile ImageFile,
+            List<IFormFile> AdditionalImages)
         {
-            if (ModelState.IsValid)
+            const long maxFileSize = 2 * 1024 * 1024;
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+
+            // 1. Kiểm tra các trường khác (trừ ảnh)
+            if (foodItem == null || string.IsNullOrWhiteSpace(foodItem.Name) || foodItem.Price <= 0 || foodItem.CategoryId == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Vui lòng nhập đầy đủ thông tin món ăn.");
+            }
+
+            // 2. Kiểm tra file ảnh
+            if (ImageFile == null)
+            {
+                ModelState.AddModelError("ImageFile", "Ảnh món ăn chính là bắt buộc.");
+            }
+            else
+            {
+                var ext = Path.GetExtension(ImageFile.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(ext))
+                {
+                    ModelState.AddModelError("ImageFile", "File phải là hình ảnh (.jpg, .jpeg, .png, .gif).");
+                }
+                else if (ImageFile.Length > maxFileSize)
+                {
+                    ModelState.AddModelError("ImageFile", "File ảnh quá lớn. Vui lòng chọn file nhỏ hơn 2MB.");
+                }
+            }
+
+            // 3. Nếu có lỗi, trả lại view, KHÔNG lưu ảnh
+            if (!ModelState.IsValid)
+            {
+                foreach (var key in ModelState.Keys)
+                {
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        Console.WriteLine($"ModelState Error - {key}: {error.ErrorMessage}");
+                    }
+                }
+                var categories = await _categoryRepository.GetAllAsync();
+                ViewData["CategoryId"] = new SelectList(categories, "Id", "Name", foodItem.CategoryId);
+                return View(foodItem);
+            }
+
+            // 4. Nếu hợp lệ, mới lưu ảnh và gán ImageUrl
+            foodItem.ImageUrl = await SaveImageAsync(ImageFile);
+
+            // 5. Lưu ảnh phụ nếu có
+            if (AdditionalImages != null && AdditionalImages.Any())
+            {
+                if(foodItem.Images == null)
+                    foodItem.Images = new List<FoodImage>();
+                foreach (var file in AdditionalImages)
+                {
+                    var url = await SaveImageAsync(file);
+                    foodItem.Images.Add(new FoodImage { ImageUrl = url });
+                }
+            }
+
+            try
             {
                 await _repository.AddAsync(foodItem);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", foodItem.CategoryId);
-            return View(foodItem);
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Create] Exception: {ex.Message}");
+                ModelState.AddModelError(string.Empty, "Có lỗi khi lưu dữ liệu.");
+                var categories = await _categoryRepository.GetAllAsync();
+                ViewData["CategoryId"] = new SelectList(categories, "Id", "Name", foodItem.CategoryId);
+                return View(foodItem);
+            }
+            
         }
 
         // GET: FoodItems/Edit/5
@@ -81,7 +151,8 @@ namespace Efood_Menu.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", foodItem.CategoryId);
+            var categories = await _categoryRepository.GetAllAsync();
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "Name", foodItem.CategoryId);
             return View(foodItem);
         }
 
@@ -97,13 +168,15 @@ namespace Efood_Menu.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _repository.UpdateAsync(foodItem);
-                return RedirectToAction(nameof(Index));
+                var categories = await _categoryRepository.GetAllAsync();
+                ViewData["CategoryId"] = new SelectList(categories, "Id", "Name", foodItem.CategoryId);
+                return View(foodItem);
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", foodItem.CategoryId);
-            return View(foodItem);
+
+            await _repository.UpdateAsync(foodItem);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: FoodItems/Delete/5
@@ -131,5 +204,27 @@ namespace Efood_Menu.Controllers
             await _repository.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
+        private async Task<string> SaveImageAsync(IFormFile imageFile, string subFolder = "foods")
+        {
+            if (imageFile == null || imageFile.Length == 0)
+                return null;
+
+            var uploadsFolder = Path.Combine("wwwroot/images", subFolder);
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(stream);
+            }
+
+            // Return the relative path for storing in the database
+            return $"/images/{subFolder}/{uniqueFileName}";
+        }
+
+        
     }
 }

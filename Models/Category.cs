@@ -12,6 +12,6 @@ namespace Efood_Menu.Models
         public required string Name { get; set; }
 
         // Navigation property
-        public ICollection<FoodItem> FoodItems { get; set; }
+        public ICollection<FoodItem>? FoodItems { get; set; }
     }
 }

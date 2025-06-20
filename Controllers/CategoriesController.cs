@@ -51,7 +51,15 @@ namespace Efood_Menu.Controllers
             if (ModelState.IsValid)
             {
                 await _repository.AddAsync(category);
+                // Thêm dòng này để kiểm tra
+                Console.WriteLine("Category added: " + category.Name);
                 return RedirectToAction(nameof(Index));
+            }
+            // Nếu không hợp lệ, kiểm tra lỗi
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            foreach (var error in errors)
+            {
+                Console.WriteLine(error.ErrorMessage);
             }
             return View(category);
         }

@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,26 +9,30 @@ namespace Efood_Menu.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Tên danh mục là bắt buộc")]
         [StringLength(150)]
         public string Name { get; set; }
 
         [StringLength(500)]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Nhập Gía")]
         [Column(TypeName = "decimal(10,2)")]
         public decimal Price { get; set; }
 
+        [Required(ErrorMessage = "Anh mon an chinh là bắt buộc")]
         // Main image for the food item
-        [StringLength(300)]
-        public string ImageUrl { get; set; }
+        [DisplayName("Hình ảnh")]
+        public string? ImageUrl { get; set; } // Ảnh đại diện
 
         // Navigation property for multiple images (additional images)
-        public ICollection<FoodImage> Images { get; set; }
+        public ICollection<FoodImage>? Images { get; set; }
 
-        // Foreign key
+        [ForeignKey("Category")]
+        [DisplayName("Mã danh mục")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+
+        [DisplayName("Danh mục")]
+        public Category? Category { get; set; }
     }
 }

@@ -12,9 +12,7 @@
   height: 56px;
   margin: 0 auto;
 }
-.sidebar-logo .icon-box-bg svg {
-  stroke: linear-gradient(135deg, #EA9769, #EA6969);
-}
+
 
 @media (max-width: 600px) {
   .sidebar-logo {

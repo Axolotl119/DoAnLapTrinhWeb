@@ -7,11 +7,11 @@ namespace Efood_Menu.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public string ImageUrl { get; set; }
 
         // Foreign key
+        [ForeignKey("FoodItem")]
         public int FoodItemId { get; set; }
-        public FoodItem FoodItem { get; set; }
+        public FoodItem? FoodItem { get; set; }
     }
 }

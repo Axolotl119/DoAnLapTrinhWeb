@@ -8,7 +8,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\foods\" />
+    <Content Remove="Controllers\AccountController.cs" />
+    <Content Remove="Controllers\CategoriesController.cs" />
+    <Content Remove="Controllers\FoodItemsController.cs" />
+    <Content Remove="Controllers\HomeController.cs" />
+    <Content Remove="Migrations\20250613013024_InitialCreate.cs" />
+    <Content Remove="Migrations\20250613013024_InitialCreate.Designer.cs" />
+    <Content Remove="Migrations\20250613015235_Initial.cs" />
+    <Content Remove="Migrations\20250613015235_Initial.Designer.cs" />
+    <Content Remove="Migrations\20250613022358_RemoveCategory.cs" />
+    <Content Remove="Migrations\20250613022358_RemoveCategory.Designer.cs" />
+    <Content Remove="Migrations\20250619040610_UpdateImageUrl.cs" />
+    <Content Remove="Migrations\20250619040610_UpdateImageUrl.Designer.cs" />
+    <Content Remove="Migrations\20250619084759_UpdateCate.cs" />
+    <Content Remove="Migrations\20250619084759_UpdateCate.Designer.cs" />
+    <Content Remove="Migrations\20250619085352_UpdateImagesNull.cs" />
+    <Content Remove="Migrations\20250619085352_UpdateImagesNull.Designer.cs" />
+    <Content Remove="Migrations\20250620012937_UpNull.cs" />
+    <Content Remove="Migrations\20250620012937_UpNull.Designer.cs" />
+    <Content Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
+    <Content Remove="Models\ApplicationDbContext.cs" />
+    <Content Remove="Models\Category.cs" />
+    <Content Remove="Models\ErrorViewModel.cs" />
+    <Content Remove="Models\FoodImage.cs" />
+    <Content Remove="Models\FoodItem.cs" />
+    <Content Remove="Models\Menu.cs" />
+    <Content Remove="wwwroot\images\foods\AccountController.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +46,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\foods\" />
   </ItemGroup>
 
 </Project>

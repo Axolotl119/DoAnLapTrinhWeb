@@ -13,7 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register the IMenuRepository with EFMenuRepository
-builder.Services.AddScoped<IMenuRepository, EFMenuRepository>();
+
 
 // Register the IFoodItemRepository with EFFoodItemRepository
 builder.Services.AddScoped<IFoodItemRepository, EFFoodItemRepository>();

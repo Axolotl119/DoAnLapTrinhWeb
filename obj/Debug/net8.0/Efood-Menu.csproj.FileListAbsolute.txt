@@ -322,4 +322,3 @@ E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\bin\Debug\net8.0\runtimes\win\lib\
 E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
-E:\Project\repo\lap_trinh_web\DoAnLapTrinhWeb\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

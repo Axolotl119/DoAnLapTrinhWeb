@@ -15,7 +15,7 @@ namespace Efood_Menu.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation property
-        public ICollection<FoodItem> FoodItems { get; set; }
+        public ICollection<FoodItem>? FoodItems { get; set; }
         
     }
 }
