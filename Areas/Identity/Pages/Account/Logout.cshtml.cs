@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using WebsiteBanHang_T4.Models;
+
 
 namespace Efood_Menu.Areas.Identity.Pages.Account
 {
