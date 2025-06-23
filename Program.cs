@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+
 ﻿using Efood_Menu.Models;
-=======
+
 ﻿using Microsoft.AspNetCore.Identity;
->>>>>>> 5287550d71038924dc29da80a14a6188910e3568
+
 using Microsoft.EntityFrameworkCore;
 using Efood_Menu.Models;
 using Efood_Menu.Repositories;
@@ -27,7 +27,7 @@ builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
-<<<<<<< HEAD
+
 // Đặt trước AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -43,10 +43,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Register the IMenuRepository with EFMenuRepository
 
 
-// Register the IFoodItemRepository with EFFoodItemRepository
-=======
+
 // Repository
->>>>>>> 5287550d71038924dc29da80a14a6188910e3568
+
 builder.Services.AddScoped<IFoodItemRepository, EFFoodItemRepository>();
 builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 

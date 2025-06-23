@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using WebsiteBanHang_T4.Models;
 
 namespace Efood_Menu.Models
 {

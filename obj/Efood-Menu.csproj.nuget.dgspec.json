@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "E:\\Project\\repo\\DoAnLapTrinhWeb\\Efood-Menu.csproj": {}
   },
   "projects": {
@@ -13,25 +12,12 @@
         "projectPath": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Efood-Menu.csproj",
         "packagesPath": "C:\\Users\\PQ\\.nuget\\packages\\",
         "outputPath": "E:\\Project\\repo\\DoAnLapTrinhWeb\\obj\\",
-=======
-    "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\Efood-Menu.csproj": {}
-  },
-  "projects": {
-    "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\Efood-Menu.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\Efood-Menu.csproj",
-        "projectName": "Efood-Menu",
-        "projectPath": "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\Efood-Menu.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "D:\\lap_trinh_web\\DoAnLapTrinhWeb\\obj\\",
->>>>>>> 5287550d71038924dc29da80a14a6188910e3568
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PQ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -94,11 +80,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.17, )"
-            },
-            "Microsoft.Extensions.Identity.Core": {
-              "target": "Package",
-              "version": "[8.0.17, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
