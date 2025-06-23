@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations; // Add this namespace
 
 
 
-namespace WebsiteBanHang_T4.Models
+namespace Efood_Menu.Models
 {
     public class ApplicationUser : IdentityUser
     {

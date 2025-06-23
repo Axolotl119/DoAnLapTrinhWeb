@@ -1,16 +1,58 @@
-﻿@{
+﻿@model IEnumerable<Efood_Menu.Models.FoodItem>
+
+@{
     ViewData["Title"] = "Trang Chủ";
-    Layout = "_Layout";
+    int numOfQuantity = 1;
 }
 
-<div class="main home-page" style="text-align:center; padding: 60px 0;">
-    <header class="hero">
+<style>
+    body {
+        background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    }
 
-        <h1>Chào mừng đến với eFood Menu!</h1>
-        <p>Khám phá thực đơn đa dạng và đặt món ăn một cách dễ dàng, nhanh chóng.</p>
-        <div style="margin-top: 40px;">
-            <a href="/FoodItems/Index" class="btn btn-primary" style="margin-right: 20px; min-width: 140px;">Xem Menu</a>
-            <a href="/Account/Login" class="btn btn-secondary" style="min-width: 140px;">Đăng nhập</a>
-        </div>
-    </header>
+    .hero-container {
+        padding: 100px 20px;
+        text-align: center;
+        color: #343a40;
+    }
+
+    .hero-title {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+        color: #6c757d;
+        margin-bottom: 40px;
+    }
+
+    .hero-buttons a {
+        min-width: 150px;
+        padding: 12px 24px;
+        font-size: 16px;
+        margin: 5px;
+    }
+</style>
+
+<div class="hero-container">
+    <h1 class="hero-title">Chào mừng đến với eFood Menu!</h1>
+    <p class="hero-subtitle">Khám phá thực đơn đa dạng và đặt món ăn nhanh chóng.</p>
+
+    <div class="hero-buttons">
+        
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a class="btn btn-outline-primary" href="/Identity/Account/Login">Đăng nhập</a>
+            <a class="btn btn-outline-secondary" href="/Identity/Account/Register">Đăng ký</a>
+        }
+        else
+        {
+            <form asp-area="Identity" asp-page="/Account/Logout" method="post" class="d-inline">
+                <button type="submit" class="btn btn-danger">Đăng xuất</button>
+            </form>
+        }
+    </div>
 </div>

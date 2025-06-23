@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Efood-Menu")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b06a06b5f742702515e92854b0640ca6f22ac99")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64458b349aaa82e6d6690aaac65c6f603aaedda1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Efood-Menu")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Efood-Menu")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

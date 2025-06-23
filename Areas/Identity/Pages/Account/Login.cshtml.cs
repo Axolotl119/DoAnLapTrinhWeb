@@ -15,8 +15,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 using Efood_Menu.Models;
 using WebsiteBanHang_T4.Models;
+=======
+
+>>>>>>> 5287550d71038924dc29da80a14a6188910e3568
 
 namespace Efood_Menu.Areas.Identity.Pages.Account
 {
@@ -118,7 +122,7 @@ namespace Efood_Menu.Areas.Identity.Pages.Account
 				if (result.Succeeded)
 				{
 					_logger.LogInformation("User logged in.");
-					return LocalRedirect(returnUrl);
+					return RedirectToAction("Index", "FoodItems", new { area = "" });
 				}
 				if (result.RequiresTwoFactor)
 				{
