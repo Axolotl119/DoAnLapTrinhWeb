@@ -1,18 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Project\\repo\\lap_trinh_web\\DoAnLapTrinhWeb\\",
+  "WorkspaceRootPath": "E:\\Project\\repo\\DoAnLapTrinhWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\lap_trinh_web\\doanlaptrinhweb\\controllers\\fooditemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:controllers\\fooditemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\lap_trinh_web\\doanlaptrinhweb\\views\\fooditems\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:views\\fooditems\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\lap_trinh_web\\doanlaptrinhweb\\views\\fooditems\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:views\\fooditems\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\doanlaptrinhweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "E:\\Project\\repo\\lap_trinh_web\\DoAnLapTrinhWeb\\Views\\FoodItems\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Views\\FoodItems\\Delete.cshtml",
-              "ToolTip": "E:\\Project\\repo\\lap_trinh_web\\DoAnLapTrinhWeb\\Views\\FoodItems\\Delete.cshtml",
-              "RelativeToolTip": "Views\\FoodItems\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T09:50:56.214Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "E:\\Project\\repo\\lap_trinh_web\\DoAnLapTrinhWeb\\Views\\FoodItems\\Create.cshtml",
-              "RelativeDocumentMoniker": "Views\\FoodItems\\Create.cshtml",
-              "ToolTip": "E:\\Project\\repo\\lap_trinh_web\\DoAnLapTrinhWeb\\Views\\FoodItems\\Create.cshtml",
-              "RelativeToolTip": "Views\\FoodItems\\Create.cshtml",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAA8AAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T09:49:05.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FoodItemsController.cs",
-              "DocumentMoniker": "E:\\Project\\repo\\lap_trinh_web\\DoAnLapTrinhWeb\\Controllers\\FoodItemsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\FoodItemsController.cs",
-              "ToolTip": "E:\\Project\\repo\\lap_trinh_web\\DoAnLapTrinhWeb\\Controllers\\FoodItemsController.cs",
-              "RelativeToolTip": "Controllers\\FoodItemsController.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAswGIAAAARAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T09:07:30.998Z",
+              "WhenOpened": "2025-06-23T07:46:47.197Z",
               "EditorCaption": ""
             }
           ]

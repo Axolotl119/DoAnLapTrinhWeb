@@ -3,7 +3,11 @@
 @import 'components/sidebar-menu';
 @import 'components/sidebar';
 @import 'components/_login';
-
+@import 'components/_food_card.scss';
+@import 'components/_food_list.scss';
+@import 'components/_food_create.scss';
+@import 'components/_food-detail.scss';
+@import 'components/_food_edit.scss';
 // Variables
 $primary-bg: #393C49;
 $secondary-bg: #1F1D2B;

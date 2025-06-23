@@ -1,4 +1,4 @@
-using Efood_Menu.Models;
+﻿using Efood_Menu.Models;
 using Microsoft.EntityFrameworkCore;
 using Efood_Menu.Repositories;
 
@@ -8,6 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
+// Đặt trước AddControllersWithViews();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 // Register ApplicationDbContext with a connection string
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -41,4 +49,10 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");
 
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/Home/Index");
+    return Task.CompletedTask;
+});
+app.MapRazorPages();
 app.Run();

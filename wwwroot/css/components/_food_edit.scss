@@ -1,0 +1,21 @@
+﻿body {
+    background: #39394f !important;
+}
+.card {
+    border-radius: 18px !important;
+}
+.card-header {
+    border-radius: 18px 18px 0 0 !important;
+}
+.btn-success {
+    background: #ff7e5f;
+    border: none;
+}
+.btn-outline-secondary {
+    color: #ff7e5f;
+    border-color: #ff7e5f;
+}
+.btn-outline-secondary:hover {
+    background: #ff7e5f;
+    color: #fff;
+}

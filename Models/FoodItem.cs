@@ -11,16 +11,16 @@ namespace Efood_Menu.Models
 
         [Required(ErrorMessage = "Tên danh mục là bắt buộc")]
         [StringLength(150)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [StringLength(500)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        [Required(ErrorMessage = "Nhập Gía")]
+        [Required(ErrorMessage = "Nhập Giá")]
         [Column(TypeName = "decimal(10,2)")]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Anh mon an chinh là bắt buộc")]
+        
         // Main image for the food item
         [DisplayName("Hình ảnh")]
         public string? ImageUrl { get; set; } // Ảnh đại diện

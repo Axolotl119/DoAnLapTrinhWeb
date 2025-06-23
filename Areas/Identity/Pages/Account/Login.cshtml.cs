@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Efood_Menu.Models;
 using WebsiteBanHang_T4.Models;
 
 namespace Efood_Menu.Areas.Identity.Pages.Account
