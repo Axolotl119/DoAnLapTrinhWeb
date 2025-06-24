@@ -4,7 +4,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
 using Microsoft.EntityFrameworkCore;
-using Efood_Menu.Models;
 using Efood_Menu.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);

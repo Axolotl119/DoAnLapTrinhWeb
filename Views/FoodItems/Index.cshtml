@@ -64,7 +64,7 @@
             <div class="food-card__title">@item.Name</div>
             <div class="food-card__price">@item.Price.ToString("c0", viVN)</div>
             <div class="food-card__order">
-                <a asp-action="Order" asp-route-id="@item.Id" class="btn btn-success w-100">
+                <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productId="@item.Id" asp-route-quantity="1" class="btn btn-success w-100">
                     Đặt Món
                 </a>
             </div>

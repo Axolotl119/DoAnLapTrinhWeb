@@ -25,7 +25,10 @@ namespace Efood_Menu.Models
         [StringLength(20)]
         public string Status { get; set; } = "Pending"; // Pending, Confirmed, Cancelled, Done
 
-        public ICollection<OrderItem>? OrderItems { get; set; }
+
+		public string ShippingAddress { get; set; }
+		public string Notes { get; set; }
+		public ICollection<OrderItem>? OrderItems { get; set; }
     }
 
 
