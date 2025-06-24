@@ -35,40 +35,37 @@ namespace Efood_Menu.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Checkout(Order order)
 		{
-			var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart");
-			if (cart == null || !cart.Items.Any())
-			{
-				TempData["Error"] = "Giỏ hàng của bạn đang trống!";
-				return RedirectToAction("Index");
-			}
+            var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart");
+            if (cart == null || !cart.Items.Any())
+            {
+                TempData["Error"] = "Giỏ hàng của bạn đang trống!";
+                return RedirectToAction("Index");
+            }
 
-			var user = await _userManager.GetUserAsync(User);
-			if (user == null)
-			{
-				return RedirectToAction("Login", "Account");
-			}
+            var user = await _userManager.GetUserAsync(User);
+            
 
-			order.UserId = user.Id;
-			order.OrderDate = DateTime.UtcNow;
-			order.TotalAmount = cart.Items.Sum(i => i.Price * i.Quantity);
-			order.DiscountApplied ??= 0;
-			order.Status = "Pending";
+            order.UserId = user?.Id;
+            order.OrderDate = DateTime.UtcNow;
+            order.TotalAmount = cart.Items.Sum(i => i.Price * i.Quantity);
+            order.Status = "Pending";
 
-			// Tạo danh sách OrderItem
-			order.OrderItems = cart.Items.Select(i => new OrderItem
-			{
-				OrderId = i.ProductId,
-				Quantity = i.Quantity,
-				UnitPrice = i.Price,
-			}).ToList();
+            // ⚠️ Ghi chú: bạn phải đảm bảo OrderType, TableNumber và DeliveryAddress được post lên đúng Model
 
-			_context.Orders.Add(order);
-			await _context.SaveChangesAsync();
+            order.OrderItems = cart.Items.Select(i => new OrderItem
+            {
+                FoodItemId = i.ProductId,
+                Quantity = i.Quantity,
+                UnitPrice = i.Price
+            }).ToList();
 
-			HttpContext.Session.Remove("Cart");
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
 
-			return View("OrderCompleted", order.Id);
-		}
+            HttpContext.Session.Remove("Cart");
+
+            return View("OrderCompleted", order.Id);
+        }
 
 		public async Task<IActionResult> AddToCart(int productId, int quantity)
 		{

@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Efood_Menu.Models
 {
+    public enum OrderType
+    {
+        DineIn,     // Ăn tại chỗ
+        TakeAway,   // Mang đi
+        Delivery    // Giao hàng
+    }
     public class Order
     {
         public int Id { get; set; }
@@ -25,8 +31,11 @@ namespace Efood_Menu.Models
         [StringLength(20)]
         public string Status { get; set; } = "Pending"; // Pending, Confirmed, Cancelled, Done
 
+        [Required]
+        public OrderType OrderType { get; set; }
 
-		public string ShippingAddress { get; set; }
+        public string? TableNumber { get; set; }
+        public string ShippingAddress { get; set; }
 		public string Notes { get; set; }
 		public ICollection<OrderItem>? OrderItems { get; set; }
     }

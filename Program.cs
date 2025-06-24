@@ -1,4 +1,3 @@
-
 ﻿using Efood_Menu.Models;
 
 ﻿using Microsoft.AspNetCore.Identity;
@@ -12,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ✅ Identity với Role
+// Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
 	options.SignIn.RequireConfirmedAccount = false;
@@ -26,25 +25,16 @@ builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
-
-// Đặt trước AddControllersWithViews();
+// Session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout as needed
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-// Register ApplicationDbContext with a connection string
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Register the IMenuRepository with EFMenuRepository
-
-
 
 // Repository
-
 builder.Services.AddScoped<IFoodItemRepository, EFFoodItemRepository>();
 builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 
@@ -58,7 +48,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthentication();
@@ -75,5 +65,5 @@ app.MapGet("/", context =>
     context.Response.Redirect("/Home/Index");
     return Task.CompletedTask;
 });
-app.MapRazorPages();
+
 app.Run();

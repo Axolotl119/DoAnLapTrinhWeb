@@ -24,6 +24,11 @@ namespace Efood_Menu.Models
 
         [Range(1, 50, ErrorMessage = "Số lượng khách từ 1 đến 50")]
         public int NumberOfGuests { get; set; }
+        [Required]
+        public int TableId { get; set; }
+
+        [ForeignKey("TableId")]
+        public Table? Table { get; set; }
 
         public string? Note { get; set; }
 

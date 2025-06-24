@@ -9,5 +9,41 @@
         <label asp-for="Notes">Notes</label>
 <textarea asp-for="Notes" class="form-control"></textarea>
     </div>
+    <div class="form-group">
+        <label>Loại đơn hàng:</label>
+        <select asp-for="OrderType" class="form-control" id="orderType">
+            <option value="0">Ăn tại chỗ</option>
+            <option value="1">Mang đi</option>
+            <option value="2">Giao hàng</option>
+        </select>
+    </div>
+
+    <div class="form-group" id="tableDiv">
+        <label>Số bàn:</label>
+        <input asp-for="TableNumber" class="form-control" />
+    </div>
+
+    
+
+    @section Scripts {
+        <script>
+            const select = document.getElementById("orderType");
+            const tableDiv = document.getElementById("tableDiv");
+            const addressDiv = document.getElementById("addressDiv");
+
+            select.addEventListener("change", function () {
+                if (this.value === "0") { // DineIn
+                    tableDiv.style.display = "block";
+                    addressDiv.style.display = "none";
+                } else if (this.value === "2") { // Delivery
+                    tableDiv.style.display = "none";
+                    addressDiv.style.display = "block";
+                } else {
+                    tableDiv.style.display = "none";
+                    addressDiv.style.display = "none";
+                }
+            });
+        </script>
+    }
     <button type="submit" class="btn btn-primary">Place Order</button>
 </form>
