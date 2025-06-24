@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    // Kiểm tra nếu là Home/Index thì ẩn sidebar
+    var hideSidebar = (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home"
+        && (ViewContext.RouteData.Values["Action"]?.ToString() == "Index" || ViewContext.RouteData.Values["Action"] == null));
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,19 +17,13 @@
 </head>
 
 <body>
-    <div class="layout-wrapper">
-        @if (!(
-                (ViewContext.RouteData.Values["Action"]?.ToString() == "Login" &&
-                ViewContext.RouteData.Values["Controller"]?.ToString() == "Account")
-                ||
-                (ViewContext.RouteData.Values["Action"]?.ToString() == "Index" &&
-                ViewContext.RouteData.Values["Controller"]?.ToString() == "Home")
-                ))
+    <div class="layout-wrapper d-flex">
+        @if (!hideSidebar)
         {
             <nav class="sidebar-modern">
                 <div class="sidebar-logo">
-                    <!-- Store Icon -->
                     <div class="icon-box icon-box-bg">
+                        <!-- Store Icon -->
                         <svg width="35" height="35" fill="none" stroke="#FF9671" stroke-width="2" viewBox="0 0 24 24">
                             <rect x="4" y="6" width="16" height="12" rx="2" />
                             <path d="M4 10h16M9 16v-4h6v4" />
@@ -33,15 +32,16 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li class="side-menu-item">
-                        <a href="#">
+                        <a href="/" title="Trang chủ" class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")">
                             <div class="icon-box">
                                 <!-- Home Icon -->
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.73049 2.78823C11.0005 1.77923 12.7805 1.73923 14.0895 2.66823L14.2505 2.78823L20.3395 7.65923C21.0095 8.17823 21.4205 8.94923 21.4905 9.78823L21.5005 9.98923V18.0982C21.5005 20.1882 19.8495 21.8882 17.7805 21.9982H15.7905C14.8395 21.9792 14.0705 21.2392 14.0005 20.3092L13.9905 20.1682V17.3092C13.9905 16.9982 13.7595 16.7392 13.4505 16.6882L13.3605 16.6782H10.6895C10.3705 16.6882 10.1105 16.9182 10.0705 17.2182L10.0605 17.3092V20.1592C10.0605 20.2182 10.0495 20.2882 10.0405 20.3382L10.0305 20.3592L10.0195 20.4282C9.90049 21.2792 9.20049 21.9282 8.33049 21.9892L8.20049 21.9982H6.41049C4.32049 21.9982 2.61049 20.3592 2.50049 18.2982V9.98923C2.50949 9.13823 2.88049 8.34823 3.50049 7.79823L9.73049 2.78823ZM13.3805 3.87823C12.6205 3.26823 11.5405 3.23923 10.7405 3.76823L10.5895 3.87823L4.50949 8.77923C4.16049 9.03823 3.95049 9.42823 3.90049 9.83823L3.88949 9.99823V18.0982C3.88949 19.4282 4.92949 20.5182 6.25049 20.5982H8.20049C8.42049 20.5982 8.61049 20.4492 8.63949 20.2392L8.66049 20.0592L8.67049 20.0082V17.3092C8.67049 16.2392 9.49049 15.3692 10.5405 15.2882H13.3605C14.4295 15.2882 15.2995 16.1092 15.3805 17.1592V20.1682C15.3805 20.3782 15.5305 20.5592 15.7305 20.5982H17.5895C18.9295 20.5982 20.0195 19.5692 20.0995 18.2582L20.1105 18.0982V9.99823C20.0995 9.56923 19.9205 9.16823 19.6105 8.86923L19.4805 8.75823L13.3805 3.87823Z" />
+                                <svg width="24" height="24" fill="none" stroke="#FF9671" stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M9.73 2.79C11 1.78 12.78 1.74 14.09 2.67L20.34 7.66C21.01 8.18 21.42 8.95 21.49 9.79V18.1C21.5 20.19 19.85 21.89 17.78 22H15.79C14.84 21.98 14.07 21.24 14 20.31V17.31C14 17 13.76 16.74 13.45 16.69H10.69C10.37 16.69 10.11 16.92 10.07 17.22V20.16C9.9 21.28 9.2 21.93 8.33 21.99H6.41C4.32 21.99 2.61 20.36 2.5 18.3V9.99C2.51 9.14 2.88 8.35 3.5 7.8L9.73 2.79Z"/>
                                 </svg>
-                            </div>  
+                            </div>
                         </a>
                     </li>
+                    <!-- Thêm các item khác ở đây, đồng bộ icon-box và svg -->
                     <li class="side-menu-item">
                         <a href="#">
                             <div class="icon-box">
@@ -70,40 +70,51 @@
                     <li class="side-menu-item">
                         <a href="#">
                             <div class="icon-box">
-                                <!-- Logout Icon -->
-                                <svg width="20" height="20" fill="none" stroke="#FF9671" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                    <polyline points="16 17 21 12 16 7" />
-                                    <line x1="21" y1="12" x2="9" y2="12" />
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="side-menu-item">
-                        <a href="#">
-                            <div class="icon-box">
                                 <!-- Order Icon -->
                                 <img src="~/assets/icons/order.svg" alt="Order Icon" width="20" height="20">
                             </div>
                         </a>
                     </li>
                 </ul>
-                <partial name="_LoginPartial" />
+                <!-- Sidebar Footer: Đăng nhập/Đăng xuất -->
+                <div class="sidebar-footer mt-auto mb-4">
+                    <div class="side-menu-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="/Identity/Account/Logout" title="Đăng xuất">
+                                <div class="icon-box">
+                                    <!-- Logout Icon -->
+                                    <svg width="24" height="24" fill="none" stroke="#FF9671" stroke-width="2" viewBox="0 0 24 24">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                        <polyline points="16 17 21 12 16 7" />
+                                        <line x1="21" y1="12" x2="9" y2="12" />
+                                    </svg>
+                                </div>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/Identity/Account/Login" title="Đăng nhập">
+                                <div class="icon-box">
+                                    <!-- Login Icon -->
+                                    <svg width="24" height="24" fill="none" stroke="#FF9671" stroke-width="2" viewBox="0 0 24 24">
+                                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                        <polyline points="10 17 15 12 10 7" />
+                                        <line x1="15" y1="12" x2="3" y2="12" />
+                                    </svg>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
             </nav>
         }
-        <div class="main-content">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+        <main class="main-content flex-grow-1">
+            @RenderBody()
+        </main>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/edit-food.js" asp-append-version="true"></script>
-    <script src="~/js/script.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
