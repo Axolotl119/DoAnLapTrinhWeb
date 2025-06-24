@@ -1,49 +1,94 @@
-﻿@model Order
-<h2>Checkout</h2>
-<form asp-action="Checkout" method="post">
-    <div class="form-group">
-        <label asp-for="ShippingAddress">Shipping Address</label>
-        <input asp-for="ShippingAddress" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Notes">Notes</label>
-<textarea asp-for="Notes" class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Loại đơn hàng:</label>
-        <select asp-for="OrderType" class="form-control" id="orderType">
-            <option value="0">Ăn tại chỗ</option>
-            <option value="1">Mang đi</option>
-            <option value="2">Giao hàng</option>
-        </select>
+﻿@using Efood_Menu.Models
+@model Order
+
+<div class="checkout-wrapper row g-4">
+    <!-- Left: User Info -->
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 efood-card">
+            <h3 class="mb-4 text-gradient fw-bold">Thông tin khách hàng</h3>
+            <div class="mb-3">
+                <label asp-for="User.FullName" class="form-label">Họ tên</label>
+                <input asp-for="User.FullName" class="form-control efood-input" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="User.PhoneNumber" class="form-label">Số điện thoại</label>
+                <input asp-for="User.PhoneNumber" class="form-control efood-input" />
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Notes" class="form-label">Ghi chú</label>
+                <textarea asp-for="Notes" class="form-control efood-input"></textarea>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group" id="tableDiv">
-        <label>Số bàn:</label>
-        <input asp-for="TableNumber" class="form-control" />
+    <!-- Right: Order Type & Details -->
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 efood-card">
+            <h3 class="mb-4 text-gradient fw-bold">Loại đơn hàng</h3>
+            <div class="order-type-group d-flex flex-column gap-3 mb-4">
+                <div class="form-check d-flex align-items-center gap-2">
+                    <input class="form-check-input" type="radio" name="OrderType" id="dineIn" value="0">
+                    <label class="form-check-label d-flex align-items-center gap-2" for="dineIn">
+                        <img src="~/assets/icons/dinner.svg" alt="Ăn tại chỗ" width="28" height="28" />
+                        Ăn tại chỗ
+                    </label>
+                </div>
+                <div class="form-check d-flex align-items-center gap-2">
+                    <input class="form-check-input" type="radio" name="OrderType" id="takeAway" value="1">
+                    <label class="form-check-label d-flex align-items-center gap-2" for="takeAway">
+                        <img src="~/assets/icons/take-away.svg" alt="Mang đi" width="28" height="28" />
+                        Mang đi
+                    </label>
+                </div>
+                <div class="form-check d-flex align-items-center gap-2">
+                    <input class="form-check-input" type="radio" name="OrderType" id="delivery" value="2">
+                    <label class="form-check-label d-flex align-items-center gap-2" for="delivery">
+                        <img src="~/assets/icons/delivery-food.svg" alt="Giao hàng" width="28" height="28" />
+                        Giao hàng
+                    </label>
+                </div>
+            </div>
+
+            <div id="orderDetails" class="fade-in">
+                <div class="mb-3" id="tableDiv" style="display:none;">
+                    <label class="form-label d-flex align-items-center gap-2">
+                        <img src="~/assets/icons/restaurant-table-and-chairs.svg" alt="Số bàn" width="22" height="22" />
+                        Số bàn:
+                    </label>
+                    <input asp-for="TableNumber" class="form-control efood-input" />
+                </div>
+                <div class="mb-3" id="addressDiv" style="display:none;">
+                    <label class="form-label d-flex align-items-center gap-2">
+                        <img src="~/assets/icons/delivery-food.svg" alt="Địa chỉ giao hàng" width="22" height="22" />
+                        Địa chỉ giao hàng:
+                    </label>
+                    <input asp-for="ShippingAddress" class="form-control efood-input" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn efood-btn-add w-100 mt-3">Đặt hàng</button>
+        </div>
     </div>
+</div>
 
-    
-
-    @section Scripts {
-        <script>
-            const select = document.getElementById("orderType");
-            const tableDiv = document.getElementById("tableDiv");
-            const addressDiv = document.getElementById("addressDiv");
-
-            select.addEventListener("change", function () {
-                if (this.value === "0") { // DineIn
-                    tableDiv.style.display = "block";
-                    addressDiv.style.display = "none";
-                } else if (this.value === "2") { // Delivery
-                    tableDiv.style.display = "none";
-                    addressDiv.style.display = "block";
-                } else {
-                    tableDiv.style.display = "none";
-                    addressDiv.style.display = "none";
+@section Scripts {
+    <script>
+        // Hiện/ẩn form chi tiết theo loại đơn hàng
+        document.querySelectorAll('input[name="OrderType"]').forEach(el => {
+            el.addEventListener('change', function () {
+                document.getElementById('orderDetails').style.display = 'block';
+                if (this.value === "0") { // Ăn tại chỗ
+                    document.getElementById('tableDiv').style.display = 'block';
+                    document.getElementById('addressDiv').style.display = 'none';
+                } else if (this.value === "2") { // Giao hàng
+                    document.getElementById('tableDiv').style.display = 'none';
+                    document.getElementById('addressDiv').style.display = 'block';
+                } else { // Mang đi
+                    document.getElementById('tableDiv').style.display = 'none';
+                    document.getElementById('addressDiv').style.display = 'none';
                 }
             });
-        </script>
-    }
-    <button type="submit" class="btn btn-primary">Place Order</button>
-</form>
+        });
+    </script>
+}
