@@ -1,0 +1,186 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin | eFood Menu</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <style>
+        :root {
+            --accent: #FF9671;
+            --sidebar-bg: #232131;
+            --sidebar-hover: #2d2b3a;
+        }
+        body {
+            background: #f8f9fa;
+        }
+        .text-accent { color: var(--accent) !important; }
+        .sidebar-modern {
+            width: 250px;
+            background: var(--sidebar-bg);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0 1.25rem 1.25rem 0;
+            box-shadow: 0 0 24px #23213122;
+        }
+        .sidebar-logo {
+            padding: 2rem 1rem 1rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #353744;
+        }
+        .sidebar-logo .icon-box-bg {
+            background: #fff3e6;
+            border-radius: 50%;
+            padding: 0.5rem;
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0 0 0;
+        }
+        .side-menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            border-left: 4px solid transparent;
+            border-radius: 0 2rem 2rem 0;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .side-menu-item a.active, .side-menu-item a:hover {
+            background: var(--sidebar-hover);
+            border-left: 4px solid var(--accent);
+            color: var(--accent);
+        }
+        .side-menu-item .icon-box {
+            width: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+        }
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 1rem 0;
+            border-top: 1px solid #353744;
+        }
+        .main-content {
+            background: #fff;
+            min-height: 100vh;
+            border-radius: 1.25rem 0 0 1.25rem;
+            box-shadow: 0 0 24px #23213111;
+            overflow: hidden;
+        }
+        .admin-header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0 2px 8px #23213108;
+        }
+        .admin-header .btn {
+            border-radius: 2rem;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .admin-header .btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+    </style>
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar-modern">
+            <div class="sidebar-logo">
+                <div class="icon-box icon-box-bg">
+                    <svg width="35" height="35" fill="none" stroke="#FF9671" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 20c0-2.2 3.6-4 8-4s8 1.8 8 4" />
+                    </svg>
+                </div>
+                <span class="fw-bold ms-2 text-accent">eFood Admin</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="side-menu-item">
+                    <a href="/Admin/Dashboard" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Dashboard" ? "active" : "")">
+                        <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="side-menu-item">
+                    <a href="/Admin/Orders" class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Orders" ? "active" : "")">
+                        <div class="icon-box"><i class="bi bi-list-ul"></i></div>
+                        Đơn hàng
+                    </a>
+                </li>
+                <li class="side-menu-item">
+                    <a href="/Admin/Merchants" class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Merchants" ? "active" : "")">
+                        <div class="icon-box"><i class="bi bi-shop"></i></div>
+                        Nhà hàng
+                    </a>
+                </li>
+                <li class="side-menu-item">
+                    <a href="/Admin/FoodItems" class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "FoodItems" ? "active" : "")">
+                        <div class="icon-box"><i class="bi bi-egg-fried"></i></div>
+                        Món ăn
+                    </a>
+                </li>
+                <li class="side-menu-item">
+                    <a href="/Admin/Categories" class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Categories" ? "active" : "")">
+                        <div class="icon-box"><i class="bi bi-tags"></i></div>
+                        Danh mục
+                    </a>
+                </li>
+                <li class="side-menu-item">
+                    <a href="/Admin/Settings" class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Settings" ? "active" : "")">
+                        <div class="icon-box"><i class="bi bi-gear"></i></div>
+                        Cài đặt
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="side-menu-item">
+                    <a href="/Identity/Account/Logout" title="Đăng xuất">
+                        <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- Main Content -->
+        <main class="main-content flex-grow-1">
+            <header class="admin-header">
+                <span class="fw-bold text-accent">eFood Menu Admin</span>
+                <div>
+                    <span class="me-3"><i class="bi bi-person-circle"></i> @User.Identity?.Name</span>
+                    <a href="/" class="btn btn-outline-primary btn-sm">Về Website</a>
+                </div>
+            </header>
+            <div class="container-fluid py-4">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

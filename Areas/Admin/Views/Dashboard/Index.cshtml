@@ -1,0 +1,45 @@
+﻿@page
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    // Ví dụ: ViewBag.OrderCount, ViewBag.MerchantCount, ...
+}
+
+<h2 class="fw-bold mb-4 text-accent">Tổng quan hệ thống</h2>
+<div class="row g-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body text-center">
+                <i class="bi bi-list-ul fs-2 text-accent"></i>
+                <h5 class="card-title mt-2">Đơn hàng</h5>
+                <p class="fs-4 fw-bold">@ViewBag.OrderCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body text-center">
+                <i class="bi bi-shop fs-2 text-accent"></i>
+                <h5 class="card-title mt-2">Nhà hàng</h5>
+                <p class="fs-4 fw-bold">@ViewBag.MerchantCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body text-center">
+                <i class="bi bi-egg-fried fs-2 text-accent"></i>
+                <h5 class="card-title mt-2">Món ăn</h5>
+                <p class="fs-4 fw-bold">@ViewBag.FoodItemCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body text-center">
+                <i class="bi bi-tags fs-2 text-accent"></i>
+                <h5 class="card-title mt-2">Danh mục</h5>
+                <p class="fs-4 fw-bold">@ViewBag.CategoryCount</p>
+            </div>
+        </div>
+    </div>
+</div>
