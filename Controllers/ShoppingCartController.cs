@@ -124,8 +124,12 @@ namespace Efood_Menu.Controllers
 			var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart") ?? new ShoppingCart();
 			cart.AddItem(cartItem);
 			HttpContext.Session.SetObjectAsJson("Cart", cart);
-
-			return RedirectToAction("Index");
+            int cartCount = cart.Items.Sum(i => i.Quantity);
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return Json(new { success = true, cartCount });
+            }
+            return RedirectToAction("Index");
 		}
 
 		public IActionResult RemoveFromCart(int productId)

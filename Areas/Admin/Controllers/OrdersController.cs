@@ -91,6 +91,9 @@ namespace Efood_Menu.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // POST: Admin/Orders/Edit/5
+        
+        
         public async Task<IActionResult> Edit(int id, [Bind("Id,OrderDate,UserId,TotalAmount,VoucherCode,DiscountApplied,Status,OrderType,TableNumber,ShippingAddress,Notes")] Order order)
         {
             if (id != order.Id)
@@ -101,8 +104,26 @@ namespace Efood_Menu.Areas.Admin.Controllers
 
             try
             {
+                var oldOrder = await _context.Orders.AsNoTracking().FirstOrDefaultAsync(o => o.Id == id);
+
                 _context.Update(order);
                 await _context.SaveChangesAsync();
+
+                // Nếu trạng thái chuyển sang Done và là DineIn thì mở lại bàn
+                if (order.OrderType == OrderType.DineIn && order.Status == "Done" && !string.IsNullOrEmpty(order.TableNumber))
+                {
+                    var table = await _context.Tables.FirstOrDefaultAsync(t => t.TableNumber == order.TableNumber);
+                    if (table != null)
+                    {
+                        table.IsAvailable = true;
+                        await _context.SaveChangesAsync();
+                        Console.WriteLine($"Table {table.TableNumber} set to available!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Table {order.TableNumber} not found!");
+                    }
+                }
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -147,7 +168,28 @@ namespace Efood_Menu.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(int orderId, string newStatus)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order == null)
+                return NotFound();
 
+            order.Status = newStatus;
+
+            // Nếu đơn hàng là ăn tại chỗ và trạng thái mới là "Done"
+            if (order.OrderType == OrderType.DineIn && newStatus == "Done" && !string.IsNullOrEmpty(order.TableNumber))
+            {
+                var table = _context.Tables.FirstOrDefault(t => t.TableNumber == order.TableNumber);
+                if (table != null)
+                {
+                    table.IsAvailable = true;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details", new { id = orderId });
+        }
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.Id == id);
