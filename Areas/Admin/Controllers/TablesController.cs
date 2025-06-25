@@ -10,49 +10,62 @@ using Efood_Menu.Models;
 namespace Efood_Menu.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class FoodItemsController : Controller
+    public class TablesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public FoodItemsController(ApplicationDbContext context)
+        public TablesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/FoodItems
+        // GET: Admin/Tables
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.FoodItems.Include(f => f.Category);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Tables.ToListAsync());
         }
 
-        
+        // GET: Admin/Tables/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        // GET: Admin/FoodItems/Create
+            var table = await _context.Tables
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (table == null)
+            {
+                return NotFound();
+            }
+
+            return View(table);
+        }
+
+        // GET: Admin/Tables/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
-        // POST: Admin/FoodItems/Create
+        // POST: Admin/Tables/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,ImageUrl,CategoryId")] FoodItem foodItem)
+        public async Task<IActionResult> Create([Bind("Id,TableNumber,Capacity,IsAvailable")] Table table)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(foodItem);
+                _context.Add(table);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", foodItem.CategoryId);
-            return View(foodItem);
+            return View(table);
         }
 
-        // GET: Admin/FoodItems/Edit/5
+        // GET: Admin/Tables/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -60,23 +73,22 @@ namespace Efood_Menu.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var foodItem = await _context.FoodItems.FindAsync(id);
-            if (foodItem == null)
+            var table = await _context.Tables.FindAsync(id);
+            if (table == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", foodItem.CategoryId);
-            return View(foodItem);
+            return View(table);
         }
 
-        // POST: Admin/FoodItems/Edit/5
+        // POST: Admin/Tables/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,ImageUrl,CategoryId")] FoodItem foodItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TableNumber,Capacity,IsAvailable")] Table table)
         {
-            if (id != foodItem.Id)
+            if (id != table.Id)
             {
                 return NotFound();
             }
@@ -85,12 +97,12 @@ namespace Efood_Menu.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(foodItem);
+                    _context.Update(table);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FoodItemExists(foodItem.Id))
+                    if (!TableExists(table.Id))
                     {
                         return NotFound();
                     }
@@ -101,11 +113,10 @@ namespace Efood_Menu.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", foodItem.CategoryId);
-            return View(foodItem);
+            return View(table);
         }
 
-        // GET: Admin/FoodItems/Delete/5
+        // GET: Admin/Tables/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -113,35 +124,34 @@ namespace Efood_Menu.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var foodItem = await _context.FoodItems
-                .Include(f => f.Category)
+            var table = await _context.Tables
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (foodItem == null)
+            if (table == null)
             {
                 return NotFound();
             }
 
-            return View(foodItem);
+            return View(table);
         }
 
-        // POST: Admin/FoodItems/Delete/5
+        // POST: Admin/Tables/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var foodItem = await _context.FoodItems.FindAsync(id);
-            if (foodItem != null)
+            var table = await _context.Tables.FindAsync(id);
+            if (table != null)
             {
-                _context.FoodItems.Remove(foodItem);
+                _context.Tables.Remove(table);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FoodItemExists(int id)
+        private bool TableExists(int id)
         {
-            return _context.FoodItems.Any(e => e.Id == id);
+            return _context.Tables.Any(e => e.Id == id);
         }
     }
 }

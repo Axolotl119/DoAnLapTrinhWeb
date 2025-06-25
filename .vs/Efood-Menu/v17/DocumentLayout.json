@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "E:\\Project\\repo\\DoAnLapTrinhWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\doanlaptrinhweb\\areas\\admin\\views\\categories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:areas\\admin\\views\\categories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\doanlaptrinhweb\\areas\\admin\\controllers\\fooditemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:areas\\admin\\controllers\\fooditemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\doanlaptrinhweb\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\doanlaptrinhweb\\areas\\admin\\views\\fooditems\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:areas\\admin\\views\\fooditems\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\doanlaptrinhweb\\areas\\admin\\views\\fooditems\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:areas\\admin\\views\\fooditems\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Views\\Categories\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Categories\\Index.cshtml",
-              "ToolTip": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Views\\Categories\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Categories\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
+              "Title": "FoodItemsController.cs",
+              "DocumentMoniker": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Controllers\\FoodItemsController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\FoodItemsController.cs",
+              "ToolTip": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Controllers\\FoodItemsController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\FoodItemsController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAgwC8AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T18:33:40.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIQAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T15:00:44.255Z",
+              "WhenOpened": "2025-06-25T18:31:17.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Views\\FoodItems\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\FoodItems\\Edit.cshtml",
+              "ToolTip": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Views\\FoodItems\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\FoodItems\\Edit.cshtml",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAwEsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T18:24:58.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Views\\FoodItems\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\FoodItems\\Index.cshtml",
+              "ToolTip": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Areas\\Admin\\Views\\FoodItems\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\FoodItems\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T18:22:49.51Z",
               "EditorCaption": ""
             }
           ]

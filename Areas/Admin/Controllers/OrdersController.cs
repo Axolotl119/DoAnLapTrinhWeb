@@ -94,32 +94,24 @@ namespace Efood_Menu.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,OrderDate,UserId,TotalAmount,VoucherCode,DiscountApplied,Status,OrderType,TableNumber,ShippingAddress,Notes")] Order order)
         {
             if (id != order.Id)
-            {
-                return NotFound();
-            }
+                return BadRequest("Id không khớp.");
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return BadRequest(string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
+
+            try
             {
-                try
-                {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrderExists(order.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(order);
+                await _context.SaveChangesAsync();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
-            return View(order);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!OrderExists(order.Id))
+                    return NotFound();
+                else
+                    throw;
+            }
+            return Ok();
         }
 
         // GET: Admin/Orders/Delete/5

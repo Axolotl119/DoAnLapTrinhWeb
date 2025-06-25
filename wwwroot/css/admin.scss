@@ -1,3 +1,8 @@
+@import 'components/_food_card.scss';
+@import 'components/_food_create.scss';
+@import 'components/_food_list.scss';
+@import 'components/_food_edit.scss';
+
 $accent: #FF9671;
 $accent-hover: #ff6b6b;
 $sidebar-bg: #232131;
@@ -83,6 +88,7 @@ body {
           margin-bottom: 0.25rem;
         }
         .menu-text {
+          color: $text-muted;
           font-size: 0.95rem;
           display: none;
         }

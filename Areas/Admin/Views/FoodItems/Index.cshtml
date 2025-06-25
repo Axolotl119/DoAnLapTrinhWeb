@@ -5,102 +5,51 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Quản lý món ăn";
     var viVN = new CultureInfo("vi-VN");
+    
 }
 
-<div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-2">
-    <h2 class="fw-bold text-accent mb-0">Danh sách món ăn</h2>
-    <a asp-action="Create" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm efood-btn-add">
-        <i class="bi bi-plus-circle fs-5"></i>
+<h1 class="choose-dishes-title text-gradient mb-4 text-center">Quản lý món ăn</h1>
+<div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
+    <a asp-area="Admin" asp-action="Create" class="btn efood-btn-add ms-2">
+        <i class="bi bi-plus-circle me-2"></i>
         Thêm món mới
     </a>
 </div>
 
-<div class="card shadow-sm border-0 rounded-4">
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table align-middle mb-0 efood-admin-table">
-                <thead class="table-light">
-                    <tr>
-                        <th class="text-center" style="width:90px;">Ảnh</th>
-                        <th class="text-start">Tên món</th>
-                        <th class="text-end">Giá</th>
-                        <th class="text-start">Danh mục</th>
-                        <th class="text-center" style="width:160px;">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="text-center">
-                                <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/no-image.png" : item.ImageUrl)"
-                                     alt="@item.Name"
-                                     class="rounded-3 shadow-sm" style="width:56px; height:56px; object-fit:cover;" />
-                            </td>
-                            <td class="fw-semibold fs-6">@item.Name</td>
-                            <td class="text-end fs-6 text-accent">@item.Price.ToString("c0", viVN)</td>
-                            <td class="fs-6">@item.Category?.Name</td>
-                            <td class="text-center">
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning rounded-circle me-1" title="Sửa">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info rounded-circle me-1" title="Chi tiết">
-                                    <i class="bi bi-info-circle"></i>
-                                </a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger rounded-circle" title="Xóa"
-                                   onclick="return confirm('Bạn có chắc muốn xóa món này?');">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+<!-- Danh sách món ăn dạng bảng đẹp cho efood menu -->
+<div class="table-responsive mb-5">
+    <table class="table efood-table align-middle mb-0">
+        <thead>
+            <tr>
+                <th class="text-center" style="width:90px;">Ảnh</th>
+                <th class="text-start">Tên món</th>
+                <th class="text-end">Giá</th>
+                <th class="text-center">Danh mục</th>
+                <th class="text-center" style="width:160px;">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/no-image.png" : item.ImageUrl)"
+                             alt="@item.Name"
+                             class="efood-table-img" style="max-width:64px;max-height:64px;" />
+                    </td>
+                    <td class="fw-semibold fs-5 text-light">@item.Name</td>
+                    <td class="text-end fs-5 text-light">@item.Price.ToString("c0", viVN)</td>
+                    <td class="text-center text-light">@item.Category?.Name</td>
+                    <td class="text-center">
+                        <a asp-area="Admin" asp-controller="FoodItems" asp-action="Edit" asp-route-id="@item.Id" class="efood-action-btn efood-action-edit" title="Sửa">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a asp-area="Admin" asp-controller="FoodItems" asp-action="Delete" asp-route-id="@item.Id" class="efood-action-btn efood-action-delete" title="Xóa">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-
-@section Styles {
-    <style>
-        .efood-admin-table th, .efood-admin-table td {
-            vertical-align: middle !important;
-        }
-        .efood-btn-add {
-            border-radius: 2rem;
-            font-weight: 500;
-            padding: 0.5rem 1.25rem;
-        }
-        .efood-admin-table img {
-            border: 2px solid #f3f3f3;
-            background: #fff;
-        }
-        .btn-warning {
-            background: #ffe082;
-            border: none;
-            color: #b26a00;
-        }
-        .btn-info {
-            background: #81d4fa;
-            border: none;
-            color: #01579b;
-        }
-        .btn-danger {
-            background: #ff8a80;
-            border: none;
-            color: #b71c1c;
-        }
-        .btn-warning:hover, .btn-info:hover, .btn-danger:hover {
-            filter: brightness(0.95);
-        }
-        .text-accent {
-            color: #FF9671 !important;
-        }
-        .card {
-            border-radius: 1.5rem !important;
-        }
-        @@media (max-width: 767.98px) {
-            .card { border-radius: 1rem !important; }
-            .efood-btn-add { width: 100%; justify-content: center; }
-        }
-    </style>
-}
