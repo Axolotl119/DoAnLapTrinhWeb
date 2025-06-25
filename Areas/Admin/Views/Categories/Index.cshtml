@@ -1,30 +1,25 @@
-﻿@model IEnumerable<Efood_Menu.Models.FoodItem>
-@using System.Globalization
+﻿@model IEnumerable<Efood_Menu.Models.Category>
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Quản lý món ăn";
-    var viVN = new CultureInfo("vi-VN");
+    ViewData["Title"] = "Quản lý danh mục";
 }
 
 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-2">
-    <h2 class="fw-bold text-accent mb-0">Danh sách món ăn</h2>
-    <a asp-action="Create" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm efood-btn-add">
+    <h2 class="fw-bold text-accent mb-0">Danh mục món ăn</h2>
+    <a asp-action="Create" class="btn btn-accent d-flex align-items-center gap-2 shadow-sm efood-btn-add">
         <i class="bi bi-plus-circle fs-5"></i>
-        Thêm món mới
+        Thêm danh mục
     </a>
 </div>
 
-<div class="card shadow-sm border-0 rounded-4">
+<div class="card shadow-sm border-0 rounded-4 bg-dark-admin">
     <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table align-middle mb-0 efood-admin-table">
-                <thead class="table-light">
+            <table class="table align-middle mb-0 efood-admin-table table-dark-admin">
+                <thead>
                     <tr>
-                        <th class="text-center" style="width:90px;">Ảnh</th>
-                        <th class="text-start">Tên món</th>
-                        <th class="text-end">Giá</th>
-                        <th class="text-start">Danh mục</th>
+                        <th class="text-start">Tên danh mục</th>
                         <th class="text-center" style="width:160px;">Thao tác</th>
                     </tr>
                 </thead>
@@ -32,14 +27,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td class="text-center">
-                                <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/no-image.png" : item.ImageUrl)"
-                                     alt="@item.Name"
-                                     class="rounded-3 shadow-sm" style="width:56px; height:56px; object-fit:cover;" />
-                            </td>
-                            <td class="fw-semibold fs-6">@item.Name</td>
-                            <td class="text-end fs-6 text-accent">@item.Price.ToString("c0", viVN)</td>
-                            <td class="fs-6">@item.Category?.Name</td>
+                            <td class="fs-6 fw-semibold">@item.Name</td>
                             <td class="text-center">
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning rounded-circle me-1" title="Sửa">
                                     <i class="bi bi-pencil-square"></i>
@@ -48,7 +36,7 @@
                                     <i class="bi bi-info-circle"></i>
                                 </a>
                                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger rounded-circle" title="Xóa"
-                                   onclick="return confirm('Bạn có chắc muốn xóa món này?');">
+                                   onclick="return confirm('Bạn có chắc muốn xóa danh mục này?');">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </td>
@@ -69,10 +57,6 @@
             border-radius: 2rem;
             font-weight: 500;
             padding: 0.5rem 1.25rem;
-        }
-        .efood-admin-table img {
-            border: 2px solid #f3f3f3;
-            background: #fff;
         }
         .btn-warning {
             background: #ffe082;
