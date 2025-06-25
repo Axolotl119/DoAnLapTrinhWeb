@@ -26,14 +26,16 @@ namespace Efood_Menu.Controllers
 			var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart") ?? new ShoppingCart();
 			return View(cart);
 		}
+        [HttpGet]
+        public IActionResult Checkout()
+        {
+            var tables = _context.Tables.ToList();
+            ViewBag.Tables = tables;
+            return View(new Order());
+        }
 
-		public IActionResult Checkout()
-		{
-			return View(new Order());
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> Checkout(Order order)
+        [HttpPost]
+		public async Task<IActionResult> Checkout(Order order, int? NumberOfGuests, DateTime? ReservationDateTime, string? TableNumber)
 		{
             var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart");
             if (cart == null || !cart.Items.Any())
@@ -50,14 +52,49 @@ namespace Efood_Menu.Controllers
             order.TotalAmount = cart.Items.Sum(i => i.Price * i.Quantity);
             order.Status = "Pending";
 
-            // ⚠️ Ghi chú: bạn phải đảm bảo OrderType, TableNumber và DeliveryAddress được post lên đúng Model
-
             order.OrderItems = cart.Items.Select(i => new OrderItem
             {
                 FoodItemId = i.ProductId,
                 Quantity = i.Quantity,
                 UnitPrice = i.Price
             }).ToList();
+
+            // Nếu là ăn tại chỗ thì tạo Reservation
+            if (order.OrderType == OrderType.DineIn)
+            {
+                if (NumberOfGuests == null || ReservationDateTime == null || string.IsNullOrEmpty(TableNumber))
+                {
+                    ModelState.AddModelError("", "Vui lòng nhập đầy đủ thông tin đặt bàn.");
+                    var tables = _context.Tables.ToList();
+                    ViewBag.Tables = tables;
+                    return View(order);
+                }
+
+                // Tìm TableId từ TableNumber
+                var table = _context.Tables.FirstOrDefault(t => t.TableNumber == TableNumber);
+                if (table == null)
+                {
+                    ModelState.AddModelError("", "Bàn không hợp lệ.");
+                    var tables = _context.Tables.ToList();
+                    ViewBag.Tables = tables;
+                    return View(order);
+                }
+
+                var reservation = new Reservation
+                {
+                    FullName = order.User?.FullName ?? "",
+                    PhoneNumber = order.User?.PhoneNumber ?? "",
+                    ReservationDateTime = ReservationDateTime.Value,
+                    NumberOfGuests = NumberOfGuests.Value,
+                    TableId = table.Id,
+                    Note = order.Notes,
+                    UserId = user?.Id
+                };
+
+                _context.Reservations.Add(reservation);
+                // Có thể cập nhật trạng thái bàn nếu cần
+                table.IsAvailable = false;
+            }
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
@@ -80,8 +117,9 @@ namespace Efood_Menu.Controllers
 				ProductId = productId,
 				Name = product.Name,
 				Price = product.Price,
-				Quantity = quantity
-			};
+				Quantity = quantity,
+				Image = product.ImageUrl ?? "default-image-url.jpg" // Thay thế bằng URL ảnh mặc định nếu không có ảnh
+            };
 
 			var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart") ?? new ShoppingCart();
 			cart.AddItem(cartItem);

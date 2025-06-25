@@ -4,16 +4,45 @@
 @{
     ViewData["Title"] = "Menu Món Ăn";
     var viVN = new CultureInfo("vi-VN");
+    var categories = ViewBag.Categories as IEnumerable<Efood_Menu.Models.Category>;
+    int? selectedCategory = null;
+    var catIdStr = Context.Request.Query["categoryId"].ToString();
+    if (int.TryParse(catIdStr, out var cid)) { selectedCategory = cid; }
+    string search = Context.Request.Query["search"];
 }
 
-<h1 class="choose-dishes-title">Chọn món ăn</h1>
-
-<p class="text-end">
-    <a asp-action="Create" class="btn efood-btn-add">
+<h1 class="choose-dishes-title text-gradient mb-4 text-center">Chọn món ăn</h1>
+<div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
+    <ul class="nav nav-tabs flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link @(selectedCategory == null ? "active" : "")"
+               href="@Url.Action("Index", new { categoryId = (int?)null })">
+                Tất cả
+            </a>
+        </li>
+        @if (categories != null)
+        {
+            foreach (var cat in categories)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @(selectedCategory == cat.Id ? "active" : "")"
+                       href="@Url.Action("Index", new { categoryId = cat.Id })">
+                        @cat.Name
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+    <form method="get" class="d-flex ms-2" role="search" style="min-width:220px;">
+        <input type="hidden" name="categoryId" value="@(selectedCategory.HasValue? selectedCategory.Value.ToString() : "")" />
+        <input type="text" name="search" value="@search" class="form-control me-2" placeholder="Tìm món ăn..." />
+        <button type="submit" class="btn btn-outline-primary">Tìm</button>
+    </form>
+    <a asp-action="Create" class="btn efood-btn-add ms-2">
         <i class="bi bi-plus-circle me-2"></i>
         Thêm món mới
     </a>
-</p>
+</div>
 
 <!-- Danh sách món ăn dạng bảng đẹp cho efood menu -->
 <div class="table-responsive mb-5">
@@ -54,18 +83,19 @@
     </table>
 </div>
 
+<!-- Card Grid đẹp, responsive -->
 <div class="food-card-grid">
     @foreach (var item in Model)
     {
-        <div class="food-card">
+        <div class="food-card shadow-sm">
             <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/no-image.png" : item.ImageUrl)"
                  alt="@item.Name"
                  class="food-card__image" />
             <div class="food-card__title">@item.Name</div>
             <div class="food-card__price">@item.Price.ToString("c0", viVN)</div>
-            <div class="food-card__order">
+            <div class="food-card__order mt-2">
                 <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productId="@item.Id" asp-route-quantity="1" class="btn btn-success w-100">
-                    Đặt Món
+                    <i class="bi bi-cart-plus me-1"></i> Đặt Món
                 </a>
             </div>
         </div>

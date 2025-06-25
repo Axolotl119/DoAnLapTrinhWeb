@@ -24,9 +24,19 @@ namespace Efood_Menu.Controllers
         }
 
         // GET: FoodItems
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(int? categoryId, string search)
         {
+            var categories = await _categoryRepository.GetAllAsync();
+            ViewBag.Categories = categories;
+
             var foodItems = await _repository.GetAllAsync();
+            if (categoryId.HasValue)
+                foodItems = foodItems.Where(f => f.CategoryId == categoryId.Value);
+
+            if (!string.IsNullOrWhiteSpace(search))
+                foodItems = foodItems.Where(f => f.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
+
             return View(foodItems);
         }
 

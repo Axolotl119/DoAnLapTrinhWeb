@@ -36,7 +36,7 @@ namespace Efood_Menu.Models
         public OrderType OrderType { get; set; }
 
         public string? TableNumber { get; set; }
-        public string ShippingAddress { get; set; }
+        public string? ShippingAddress { get; set; }
         public string Notes { get; set; }
         public ICollection<OrderItem>? OrderItems { get; set; }
 
@@ -55,6 +55,7 @@ namespace Efood_Menu.Models
                     "Địa chỉ giao hàng là bắt buộc khi chọn Giao hàng.",
                     new[] { nameof(ShippingAddress) });
             }
+            
         }
     }
 }

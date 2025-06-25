@@ -25,7 +25,6 @@
     <Content Remove="Migrations\20250619085352_UpdateImagesNull.Designer.cs" />
     <Content Remove="Migrations\20250620012937_UpNull.cs" />
     <Content Remove="Migrations\20250620012937_UpNull.Designer.cs" />
-    <Content Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
     <Content Remove="Models\ApplicationDbContext.cs" />
     <Content Remove="Models\Category.cs" />
     <Content Remove="Models\ErrorViewModel.cs" />
@@ -54,6 +53,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\images\foods\" />
   </ItemGroup>
 
