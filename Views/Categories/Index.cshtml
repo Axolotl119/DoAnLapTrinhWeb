@@ -4,32 +4,109 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #393b44;
+        color: #f3f3f3;
+    }
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        background: #23232b;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        padding: 32px 40px;
+    }
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 24px;
+        color: #fff;
+        letter-spacing: 1px;
+    }
+    .btn-primary {
+        background: #ff7e5f;
+        color: #fff;
+        padding: 8px 18px;
+        border: none;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.2s;
+        margin-bottom: 18px;
+        display: inline-block;
+    }
+    .btn-primary:hover {
+        background: #feb47b;
+        color: #23232b;
+    }
+    table.table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+        background: #2d2f3a;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    table th, table td {
+        padding: 14px 18px;
+        text-align: left;
+    }
+    table th {
+        background: #23232b;
+        color: #ff7e5f;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-bottom: 2px solid #393b44;
+    }
+    table tr {
+        border-bottom: 1px solid #393b44;
+    }
+    table tr:last-child {
+        border-bottom: none;
+    }
+    table td a {
+        color: #ff7e5f;
+        text-decoration: none;
+        font-weight: 500;
+        margin-right: 10px;
+        transition: color 0.2s;
+    }
+    table td a:hover {
+        color: #feb47b;
+        text-decoration: underline;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</style>
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <a asp-action="Create" class="btn-primary">+ Create New</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
