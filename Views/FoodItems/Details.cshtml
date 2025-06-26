@@ -1,8 +1,9 @@
 ﻿@model Efood_Menu.Models.FoodItem
-
+@using System.Globalization
 @{
     ViewData["Title"] = "Trang chi tiết món " + @Model.Name;
     var allImages = new List<string>();
+    var viVN = new CultureInfo("vi-VN");
     if (!string.IsNullOrEmpty(Model.ImageUrl))
     {
         allImages.Add(Model.ImageUrl);
@@ -41,15 +42,13 @@
                     <div class="mb-2 text-secondary fw-semibold fs-6">@Model.Category?.Name</div>
                     <div class="mb-3 fs-6">@Model.Description</div>
                     <div class="mb-3 d-flex align-items-center">
-                        <span class="fs-5 fw-bold text-accent">@Model.Price.ToString("C")</span>
+                        <span class="fs-5 fw-bold text-accent">@Model.Price.ToString("c0", viVN)</span>
                         <span class="badge bg-success ms-3">Available</span>
                     </div>
                     <div>
-                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-accent me-2 btn-ef btn-sm">
-                            <i class="bi bi-pencil"></i> Edit
-                        </a>
+                        
                         <a asp-action="Index" class="btn btn-secondary btn-ef btn-sm">
-                            <i class="bi bi-arrow-left"></i> Back to List
+                            <i class="bi bi-arrow-left"></i> Quay trở lại thực đơn
                         </a>
                     </div>
                 </div>

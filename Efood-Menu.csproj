@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Controllers\CategoriesController.cs" />
     <Content Remove="Controllers\FoodItemsController.cs" />
     <Content Remove="Controllers\HomeController.cs" />
     <Content Remove="Migrations\20250613013024_InitialCreate.cs" />
@@ -25,7 +24,6 @@
     <Content Remove="Migrations\20250619085352_UpdateImagesNull.Designer.cs" />
     <Content Remove="Migrations\20250620012937_UpNull.cs" />
     <Content Remove="Migrations\20250620012937_UpNull.Designer.cs" />
-    <Content Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
     <Content Remove="Models\ApplicationDbContext.cs" />
     <Content Remove="Models\Category.cs" />
     <Content Remove="Models\ErrorViewModel.cs" />
@@ -53,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\images\foods\" />
   </ItemGroup>
 

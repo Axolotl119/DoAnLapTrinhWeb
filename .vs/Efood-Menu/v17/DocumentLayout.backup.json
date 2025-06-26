@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\DoAnLapTrinhWeb\\",
   "Documents": [
     {
@@ -13,6 +14,13 @@
     {
       "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|d:\\doanlaptrinhweb\\views\\shoppingcart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:views\\shoppingcart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+=======
+  "WorkspaceRootPath": "E:\\Project\\repo\\DoAnLapTrinhWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|e:\\project\\repo\\doanlaptrinhweb\\views\\fooditems\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:views\\fooditems\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> b2ca142eccd6df33eb7d36f22f73e2e82fd40e9a
     }
   ],
   "DocumentGroupContainers": [
@@ -22,6 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -92,6 +101,22 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+=======
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Views\\FoodItems\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\FoodItems\\Index.cshtml",
+              "ToolTip": "E:\\Project\\repo\\DoAnLapTrinhWeb\\Views\\FoodItems\\Index.cshtml",
+              "RelativeToolTip": "Views\\FoodItems\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T04:10:34.296Z",
+              "EditorCaption": ""
+>>>>>>> b2ca142eccd6df33eb7d36f22f73e2e82fd40e9a
             }
           ]
         }

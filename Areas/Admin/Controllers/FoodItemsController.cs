@@ -10,8 +10,9 @@ using Efood_Menu.Repositories;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 
-namespace Efood_Menu.Controllers
+namespace Efood_Menu.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class FoodItemsController : Controller
     {
         private readonly IFoodItemRepository _repository;
@@ -171,12 +172,15 @@ namespace Efood_Menu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,CategoryId")] FoodItem foodItem)
+        public async Task<IActionResult> Edit(
+    int id,
+    [Bind("Id,Name,Description,Price,CategoryId,ImageUrl")] FoodItem foodItem,
+    IFormFile ImageFile,
+    List<IFormFile> AdditionalImages, bool RemoveMainImage,
+    string RemoveImageIds)
         {
             if (id != foodItem.Id)
-            {
                 return NotFound();
-            }
 
             if (!ModelState.IsValid)
             {
@@ -185,8 +189,85 @@ namespace Efood_Menu.Controllers
                 return View(foodItem);
             }
 
-            await _repository.UpdateAsync(foodItem);
-            return RedirectToAction(nameof(Index));
+            // Get the tracked entity
+            var oldItem = await _repository.GetByIdAsync(id);
+            if (oldItem == null)
+                return NotFound();
+
+            // Update properties
+            oldItem.Name = foodItem.Name;
+            oldItem.Description = foodItem.Description;
+            oldItem.Price = foodItem.Price;
+            oldItem.CategoryId = foodItem.CategoryId;
+
+            // Handle main image
+            if (ImageFile != null && ImageFile.Length > 0)
+            {
+                oldItem.ImageUrl = await SaveImageAsync(ImageFile);
+            }
+            else if (!string.IsNullOrWhiteSpace(foodItem.ImageUrl))
+            {
+                oldItem.ImageUrl = foodItem.ImageUrl;
+            }
+            // else keep old image
+            if (RemoveMainImage)
+            {
+                oldItem.ImageUrl = null;
+            }
+            else if (ImageFile != null && ImageFile.Length > 0)
+            {
+                oldItem.ImageUrl = await SaveImageAsync(ImageFile);
+            }
+            else if (!string.IsNullOrWhiteSpace(foodItem.ImageUrl))
+            {
+                oldItem.ImageUrl = foodItem.ImageUrl;
+            }
+
+            // Xóa ảnh phụ cũ nếu được yêu cầu
+            if (!string.IsNullOrEmpty(RemoveImageIds) && oldItem.Images != null)
+            {
+                var idsToRemove = RemoveImageIds.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(id => int.Parse(id)).ToList();
+                oldItem.Images = oldItem.Images.Where(img => !idsToRemove.Contains(img.Id)).ToList();
+            }
+
+            // Thêm ảnh phụ mới
+            if (AdditionalImages != null && AdditionalImages.Any())
+            {
+                if (oldItem.Images == null)
+                    oldItem.Images = new List<FoodImage>();
+                foreach (var file in AdditionalImages)
+                {
+                    var url = await SaveImageAsync(file);
+                    oldItem.Images.Add(new FoodImage { ImageUrl = url });
+                }
+            }
+
+            // Handle additional images
+            if (AdditionalImages != null && AdditionalImages.Any())
+            {
+                if (oldItem.Images == null)
+                    oldItem.Images = new List<FoodImage>();
+                foreach (var file in AdditionalImages)
+                {
+                    var url = await SaveImageAsync(file);
+                    oldItem.Images.Add(new FoodImage { ImageUrl = url });
+                }
+            }
+
+            try
+            {
+                await _repository.UpdateAsync(oldItem);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Edit] Exception: {ex.Message}");
+                ModelState.AddModelError(string.Empty, "Có lỗi khi lưu dữ liệu.");
+                var categories = await _categoryRepository.GetAllAsync();
+                ViewData["CategoryId"] = new SelectList(categories, "Id", "Name", foodItem.CategoryId);
+                return View(foodItem);
+            }
         }
 
         // GET: FoodItems/Delete/5

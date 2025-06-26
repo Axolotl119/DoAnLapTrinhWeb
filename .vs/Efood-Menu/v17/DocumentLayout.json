@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\DoAnLapTrinhWeb\\",
   "Documents": [
     {
@@ -15,10 +16,15 @@
       "RelativeMoniker": "D:0:0:{665F5EAF-FB35-47EE-A167-FD21DD94827F}|Efood-Menu.csproj|solutionrelative:views\\shoppingcart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
+=======
+  "WorkspaceRootPath": "E:\\Project\\repo\\DoAnLapTrinhWeb\\",
+  "Documents": [],
+>>>>>>> b2ca142eccd6df33eb7d36f22f73e2e82fd40e9a
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
+<<<<<<< HEAD
       "DocumentGroups": [
         {
           "DockedWidth": 200,
@@ -96,6 +102,9 @@
           ]
         }
       ]
+=======
+      "DocumentGroups": []
+>>>>>>> b2ca142eccd6df33eb7d36f22f73e2e82fd40e9a
     }
   ]
 }
