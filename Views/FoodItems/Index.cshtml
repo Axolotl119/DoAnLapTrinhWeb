@@ -63,6 +63,12 @@
 @section Scripts {
     <script>
         $(function() {
+            $('.food-card').click(function(e) {
+            // Nếu click vào nút đặt món thì không chuyển trang
+            if ($(e.target).closest('.add-to-cart-btn').length) return;
+            var id = $(this).find('.add-to-cart-btn').data('product-id');
+            window.location.href = '/FoodItems/Details/' + id;
+            });
             $('.add-to-cart-btn').click(function() {
                 var btn = $(this);
                 var productId = btn.data('product-id');

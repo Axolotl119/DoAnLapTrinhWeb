@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Controllers\CategoriesController.cs" />
     <Content Remove="Controllers\FoodItemsController.cs" />
     <Content Remove="Controllers\HomeController.cs" />
     <Content Remove="Migrations\20250613013024_InitialCreate.cs" />

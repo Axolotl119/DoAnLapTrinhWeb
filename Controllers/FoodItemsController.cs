@@ -123,7 +123,7 @@ namespace Efood_Menu.Controllers
             // 5. Lưu ảnh phụ nếu có
             if (AdditionalImages != null && AdditionalImages.Any())
             {
-                if(foodItem.Images == null)
+                if (foodItem.Images == null)
                     foodItem.Images = new List<FoodImage>();
                 foreach (var file in AdditionalImages)
                 {
@@ -145,7 +145,7 @@ namespace Efood_Menu.Controllers
                 ViewData["CategoryId"] = new SelectList(categories, "Id", "Name", foodItem.CategoryId);
                 return View(foodItem);
             }
-            
+
         }
 
         // GET: FoodItems/Edit/5
@@ -235,6 +235,6 @@ namespace Efood_Menu.Controllers
             return $"/images/{subFolder}/{uniqueFileName}";
         }
 
-        
+
     }
 }

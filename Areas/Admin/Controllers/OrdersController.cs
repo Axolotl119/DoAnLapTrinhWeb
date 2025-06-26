@@ -35,8 +35,10 @@ namespace Efood_Menu.Areas.Admin.Controllers
             }
 
             var order = await _context.Orders
-                .Include(o => o.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                            .Include(o => o.User)
+                            .Include(o => o.OrderItems)
+                            .ThenInclude(oi => oi.FoodItem)
+                            .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
                 return NotFound();

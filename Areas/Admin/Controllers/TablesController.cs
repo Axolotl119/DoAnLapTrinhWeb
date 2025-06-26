@@ -25,24 +25,6 @@ namespace Efood_Menu.Areas.Admin.Controllers
             return View(await _context.Tables.ToListAsync());
         }
 
-        // GET: Admin/Tables/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var table = await _context.Tables
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (table == null)
-            {
-                return NotFound();
-            }
-
-            return View(table);
-        }
-
         // GET: Admin/Tables/Create
         public IActionResult Create()
         {

@@ -64,7 +64,7 @@
                         <select class="form-select form-select-sm edit-mode d-none" name="Status">
                             @foreach (var status in statusList)
                             {
-                                <option value="@status" @(item.Status == status ? "selected" : "")>@status</option>
+                                <option value="@status" selected="@(item.Status == status ? "selected" : null)">@status</option>
                             }
                         </select>
                     </td>
@@ -73,7 +73,7 @@
                         <select class="form-select form-select-sm edit-mode d-none" name="OrderType">
                             @foreach (var type in orderTypeList)
                             {
-                                <option value="@type" @(item.OrderType == type ? "selected" : "")>@type</option>
+                                <option value="@type" selected="@(item.OrderType == type ? "selected" : null)">@type</option>
                             }
                         </select>
                     </td>
